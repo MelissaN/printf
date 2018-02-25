@@ -13,6 +13,7 @@ int _strlen(char *s);
 int _printf(const char *format, ...);
 char *print_s(va_list list);
 char *print_c(va_list list);
+char *print_d(va_list list);
 
 typedef struct types
 {

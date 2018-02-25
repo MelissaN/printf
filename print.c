@@ -7,8 +7,8 @@ char* (*get_func(char i))(va_list)
 	print keys[] = {
                 {'c', print_c},
                 {'s', print_s},
-		/*      {'d', print_d},
-			{'i', print_i}, */
+		{'d', print_d},
+		{'i', print_d},
                 {'\0', NULL}
         };
 
