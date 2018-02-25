@@ -14,8 +14,9 @@ char* (*get_func(char i))(va_list)
 
 	while (keys[k].id != '\0')
 	{
-		if (keys[k++].id == i)
+		if (keys[k].id == i)
 			return(keys[k].func);
+		k++;
 	}
 	return (NULL);
 }
@@ -40,15 +41,19 @@ int _printf(const char *format, ...)
 			buffer[len++] = format[i++];
        		else /* if %, find and run function, assign to buffer */
 		{
-			f = get_func(format[++i]);
-			if (f == NULL)
-				buffer[len++] = format[--i];
-			else
-			{
-				str = f(list);
-				while (*str != '\0')
-					buffer[len++] = *str++;
-			} i++;
+			if (format[++i] == '%')
+				buffer[len++] = format[i++];
+			else {
+				f = get_func(format[i]);
+				if (f == NULL)
+					buffer[len++] = format[--i];
+				else
+				{
+					str = f(list);
+					while (*str != '\0')
+						buffer[len++] = *str++;
+				} i++;
+			}
 		}
 	}
 	buffer = realloc(buffer, _strlen(buffer)); /* realloc to correct size */
