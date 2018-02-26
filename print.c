@@ -65,9 +65,9 @@ int _printf(const char *format, ...)
 			}
 		}
 	}
-	buffer = realloc(buffer, _strlen(buffer)); /* realloc to correct size */
-	write(1, buffer, _strlen(buffer)); /* print */
+	buffer = realloc(buffer, len); /* realloc to correct size */
+	write(1, buffer, len); /* print */
 
-	va_end(list);
-	return (_strlen(buffer));
+	free(buffer); va_end(list);
+	return (len);
 }
