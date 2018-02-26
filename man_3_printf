@@ -1,0 +1,60 @@
+.TH _printf 3 "27 February 2018" "1.0" "custom man page"
+.SH NAME
+.B _printf
+- formatted output conversion
+.SH SYNOPSIS
+.B #include our *.c files
+.sp
+int _printf(const char *format, ...);
+.SH DESCRIPTION
+The function printf() writes output  to
+.I stdout,
+the  standard  output  stream. It writes the output under the control of a format string that  specifies  how  subsequent  arguments  (or  arguments  accessed via the variable-length argument facilities of stdarg(3)) are converted for output.
+.SS Return value
+Upon successful return, this function returns the number of characters printed (excluding the null byte used to end output to strings). 
+If an output error is encountered, a negative value is returned.
+.SS Format of the format string
+The  format  string is a character string, beginning and ending in its initial shift state, if any. The format string is composed of zero or more directives: ordinary characters (not %), which are copied unchanged to the output stream; and conversion specifications, each of which results in fetching zero or more subsequent arguments. Each conversion specification is introduced by the character %, and ends with a 
+.I conversion specifier.
+.SS The conversion specifier
+A character that specifies the type of conversion to be applied.  The conversion  specifiers  and  their meanings are:
+.sp
+d, i   The
+.I int
+argument is converted to signed decimal notation.
+.sp
+c      The
+.I int
+argument is converted to an unsigned char, and the resulting character is written.
+.sp
+s
+.RS
+The
+.I const char *
+argument is expected to be a pointer to an array of character  type  (pointer  to  a  string). Characters from the array are written up to (but not including) a terminating null byte ('\0').
+.RE
+%      A '%' is written. No argument is converted. The complete conversion specification is '%%'.
+.SH EXAMPLE
+To print strings and characters:
+.sp
+.RS
+#include <(our files)>
+.RE
+.RS
+_printf("Let's print %c %s\\n", 'a', "string");
+.RE
+.sp
+To print decimal numbers and integers:
+.sp
+.RS
+#include <(our files)>
+.RE
+.RS
+_printf("Max int is %d and min int is %i\\n", 2147483647, -2147483648);
+.RE
+.SH BUGS
+Bugs...
+.SH SEE ALSO
+.I write(2), printf(3)
+.SH AUTHOR
+Melissa Ng and Cody Paral
