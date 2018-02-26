@@ -10,6 +10,6 @@ char *print_s(va_list list)
 
 	s = va_arg(list, char *);
 	if (s == NULL)
-		return("(null)");
+		return ("(null)");
 	return (s);
 }
