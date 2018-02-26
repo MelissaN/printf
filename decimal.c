@@ -1,5 +1,12 @@
 #include "holberton.h"
-char *_fun(int div, int length, int n)
+/**
+ * _itos - makes an int a string
+ * @div: multiple of 10
+ * @length: length of number
+ * @n: number to convert to string
+ * Return: string
+ **/
+char *_itos(int div, int length, int n)
 {
 	char *str;
 	int i = 0;
@@ -21,9 +28,15 @@ char *_fun(int div, int length, int n)
 	str[i] = '\0';
 	return (str);
 }
+/**
+ * print_d - gets length to put in _itos
+ * @list: takes arg
+ * Return: inegar string
+ **/
 char *print_d(va_list list)
 {
 	int length, div, temp, n;
+
 	n = va_arg(list, int);
 	temp = n;
 	length = 0;
@@ -40,5 +53,5 @@ char *print_d(va_list list)
 		temp /= 10;
 	}
 	div /= 10;
-	return (_fun(div, length, n));
+	return (_itos(div, length, n));
 }
