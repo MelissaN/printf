@@ -7,17 +7,21 @@
 .sp
 int _printf(const char *format, ...);
 .SH DESCRIPTION
-The function printf() writes output  to
+The function printf() writes output to
 .I stdout,
-the  standard  output  stream. It writes the output under the control of a format string that  specifies  how  subsequent  arguments  (or  arguments  accessed via the variable-length argument facilities of stdarg(3)) are converted for output.
+the standard output stream. It writes the output under the control of a format string that specifies how subsequent arguments (or arguments accessed via the variable-length argument facilities of stdarg(3)) are converted for output.
 .SS Return value
 Upon successful return, this function returns the number of characters printed (excluding the null byte used to end output to strings). 
 If an output error is encountered, a negative value is returned.
 .SS Format of the format string
-The  format  string is a character string, beginning and ending in its initial shift state, if any. The format string is composed of zero or more directives: ordinary characters (not %), which are copied unchanged to the output stream; and conversion specifications, each of which results in fetching zero or more subsequent arguments. Each conversion specification is introduced by the character %, and ends with a 
+The format string is a character string, beginning and ending in its initial shift state, if any. The format string is composed of zero or more directives: ordinary characters (not %), which are copied unchanged to the output stream; and conversion specifications, each of which results in fetching zero or more subsequent arguments. Each conversion specification is introduced by the character %, and ends with a 
 .I conversion specifier.
+.SS The flag characters
+.SS The field width
+.SS The precision
+.SS The length modifier
 .SS The conversion specifier
-A character that specifies the type of conversion to be applied.  The conversion  specifiers  and  their meanings are:
+A character that specifies the type of conversion to be applied. The conversion specifiers and their meanings are:
 .sp
 d, i   The
 .I int
@@ -31,9 +35,16 @@ s
 .RS
 The
 .I const char *
-argument is expected to be a pointer to an array of character  type  (pointer  to  a  string). Characters from the array are written up to (but not including) a terminating null byte ('\0').
+argument is expected to be a pointer to an array of character type (pointer to a string). Characters from the array are written up to (but not including) a terminating null byte ('\0').
 .RE
 %      A '%' is written. No argument is converted. The complete conversion specification is '%%'.
+.SH CONFORMING TO
+The printf() function conforms to C89.
+.SH NOTES
+This custom _printf function does not yet handle more
+.I flags, field width, precision,
+or
+.I length modifiers.
 .SH EXAMPLE
 To print strings and characters:
 .sp
