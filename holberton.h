@@ -15,6 +15,12 @@ char *print_s(va_list list);
 char *print_c(va_list list);
 char *print_d(va_list list);
 
+/**
+ * struct types - struct
+ * @id: identifier of type to print (e.g. c means char)
+ * @func: ptr to functions that print according to identifier (e.g. print_c)
+ */
+
 typedef struct types
 {
 	char id;
