@@ -36,12 +36,17 @@ char *_itos(int div, int length, int n)
 char *print_d(va_list list)
 {
 	int length, div, temp, n;
-
+	
 	n = va_arg(list, int);
 	temp = n;
 	length = 0;
 	div = 1;
 
+	if (n == 0)
+	{
+		length++;
+		return (_itos(div, length, n));
+	}
 	if (temp < 0)
 	{
 		temp *= -1;
@@ -49,9 +54,10 @@ char *print_d(va_list list)
 	while (temp > 0)
 	{
 		length += 1;
-		div *= 10;
+		if (length > 1)
+			div *= 10;
 		temp /= 10;
 	}
-	div /= 10;
+	
 	return (_itos(div, length, n));
 }
