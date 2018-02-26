@@ -25,6 +25,34 @@ char* (*get_func(char i))(va_list)
 	return (NULL);
 }
 /**
+ * create_buffer - creates buffer to hold string until it's ready for print
+ * Return: pointer to buffer created
+ */
+char *create_buffer(void)
+{
+	char *buffer;
+
+	buffer = malloc(sizeof(char) * 1024);
+	if (buffer == NULL)
+		return (NULL);
+	return (buffer);
+}
+/**
+ * write_buffer - prints buffer, then frees it and frees va_list
+ * @buffer: buffer holding print-ables
+ * @len: length of print-able string
+ * @list: va_list
+ */
+void write_buffer(char *buffer, int len, va_list list)
+{
+	char *buff;
+
+	buff = realloc(buffer, len); /* realloc to correct size */
+	write(1, buff, len); /* print */
+
+	free(buff); va_end(list);
+}
+/**
  * _printf - mini printf version
  * @format: initial string with all identifiers
  * Return: strings with identifiers expanded
@@ -36,11 +64,7 @@ int _printf(const char *format, ...)
 	char *buffer, *str;
 	char* (*f)(va_list);
 
-	if (format == NULL) /* validate input */
-		return (0);
-	buffer = malloc(1024);
-	if (buffer == NULL)
-		return (0);
+	buffer = create_buffer();
 	va_start(list, format);
 
 	while (format[i] != '\0')
@@ -49,25 +73,49 @@ int _printf(const char *format, ...)
 			buffer[len++] = format[i++];
 		else /* if %, find and run function, assign to buffer */
 		{
-			if (format[++i] == '%')
-				buffer[len++] = format[i++];
+			i++;
+			if (format[i] == '%')
+				buffer[len++] = format[i];
 			else
 			{
-				f = get_func(format[i]);
-				if (f == NULL)
-					buffer[len++] = format[--i];
+				if (format[i] == ' ')
+				{
+					while (format[i] == ' ')
+					i++;
+					f = get_func(format[i]);
+					if (f == NULL)
+					{
+						buffer[len++] = '%';
+						buffer[len++] = ' ';
+						buffer[len++] = format[i];
+					}
+					else
+					{
+						str = f(list);
+						if (format[i] == 'd' || format[i] == 'i')
+							buffer[len++] = ' ';
+						while (*str != '\0')
+							buffer[len++] = *str++;
+					}
+				}
 				else
 				{
-					str = f(list);
-					while (*str != '\0')
-						buffer[len++] = *str++;
-				} i++;
-			}
+					f = get_func(format[i]);
+					if (f == NULL)
+					{
+						buffer[len++] = '%';
+						buffer[len++] = format[i];
+					}
+					else
+					{
+						str = f(list);
+						while (*str != '\0')
+							buffer[len++] = *str++;
+					}
+				}
+			} i++;
 		}
 	}
-	buffer = realloc(buffer, len); /* realloc to correct size */
-	write(1, buffer, len); /* print */
-
-	free(buffer); va_end(list);
+	write_buffer(buffer, len, list);
 	return (len);
 }
