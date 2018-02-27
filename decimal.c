@@ -12,6 +12,8 @@ char *_itos(int div, int length, int n)
 	int i = 0;
 
 	str = malloc(sizeof(char *) * length + 1);
+	if (str == NULL)
+		return(NULL);
 	if (n < 0)
 	{
 		str[0] = '-';
