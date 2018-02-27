@@ -27,6 +27,8 @@ int _printf(const char *format, ...)
 		else /* if %, find and run function, assign to buffer */
 		{
 			i++;
+			if (format[i] == '\0')
+				return(-1);
 			if (format[i] == '%')
 				buffer[len++] = format[i];
 			else
@@ -46,12 +48,10 @@ int _printf(const char *format, ...)
 					{
 						str = f(list);
 						if (str == NULL)
-						{
 							return (-1);
-						}
 						if (format[i] == 'd' || format[i] == 'i')
 							buffer[len++] = ' ';
-						while (*str != '\0')
+					       	while (*str != '\0')
 							buffer[len++] = *str++;
 					}
 				}
@@ -68,7 +68,9 @@ int _printf(const char *format, ...)
 						str = f(list);
 						if (str == NULL)
 							return (-1);
-						while (*str != '\0')
+						if (format[i] == 'c' && str[0] == '\0')
+							buffer[len++] = '\0';
+					       	while (*str != '\0')
 							buffer[len++] = *str++;
 					}
 				}
