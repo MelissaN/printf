@@ -46,7 +46,9 @@ int _printf(const char *format, ...)
 					{
 						str = f(list);
 						if (str == NULL)
+						{
 							return (-1);
+						}
 						if (format[i] == 'd' || format[i] == 'i')
 							buffer[len++] = ' ';
 						while (*str != '\0')
@@ -64,6 +66,8 @@ int _printf(const char *format, ...)
 					else
 					{
 						str = f(list);
+						if (str == NULL)
+							return (-1);
 						while (*str != '\0')
 							buffer[len++] = *str++;
 					}
