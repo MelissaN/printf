@@ -15,6 +15,9 @@ int _printf(const char *format, ...)
 		return (-1);
 
 	buffer = create_buffer();
+	if (buffer == NULL)
+		return (-1);
+
 	va_start(list, format);
 
 	while (format[i] != '\0')
@@ -42,6 +45,8 @@ int _printf(const char *format, ...)
 					else
 					{
 						str = f(list);
+						if (str == NULL)
+							return (-1);
 						if (format[i] == 'd' || format[i] == 'i')
 							buffer[len++] = ' ';
 						while (*str != '\0')
