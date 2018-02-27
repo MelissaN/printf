@@ -33,46 +33,21 @@ int _printf(const char *format, ...)
 				buffer[len++] = format[i];
 			else
 			{
-				if (format[i] == ' ')
+				f = get_func(format[i]);
+				if (f == NULL)
 				{
-					while (format[i] == ' ')
-					i++;
-					f = get_func(format[i]);
-					if (f == NULL)
-					{
-						buffer[len++] = '%';
-						buffer[len++] = ' ';
-						buffer[len++] = format[i];
-					}
-					else
-					{
-						str = f(list);
-						if (str == NULL)
-							return (-1);
-						if (format[i] == 'd' || format[i] == 'i')
-							buffer[len++] = ' ';
-					       	while (*str != '\0')
-							buffer[len++] = *str++;
-					}
+					buffer[len++] = '%';
+					buffer[len++] = format[i];
 				}
 				else
 				{
-					f = get_func(format[i]);
-					if (f == NULL)
-					{
-						buffer[len++] = '%';
-						buffer[len++] = format[i];
-					}
-					else
-					{
-						str = f(list);
-						if (str == NULL)
-							return (-1);
-						if (format[i] == 'c' && str[0] == '\0')
-							buffer[len++] = '\0';
-					       	while (*str != '\0')
-							buffer[len++] = *str++;
-					}
+					str = f(list);
+					if (str == NULL)
+						return (-1);
+					if (format[i] == 'c' && str[0] == '\0')
+						buffer[len++] = '\0';
+					while (*str != '\0')
+						buffer[len++] = *str++;
 				}
 			} i++;
 		}
