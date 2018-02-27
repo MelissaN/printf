@@ -6,7 +6,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int len = 0, i = 0;
+	int len = 0, i = 0, j = 0;
 	va_list list;
 	char *buffer, *str;
 	char* (*f)(va_list);
@@ -24,30 +24,41 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%') /* copy format into buffer until '%' */
 			buffer[len++] = format[i++];
-		else /* if %, find and run function, assign to buffer */
+		else /* if %, find function */
 		{
 			i++;
-			if (format[i] == '\0')
+			if (format[i] == '\0') /* handle single ending % */
+			{
+				free(buffer);
 				return(-1);
-			if (format[i] == '%')
+			}
+			if (format[i] == '%') /* handle double %'s */
 				buffer[len++] = format[i];
 			else
 			{
-				f = get_func(format[i]);
-				if (f == NULL)
+				f = get_func(format[i]); /* grab function */
+				if (f == NULL)  /* handle fake id */
 				{
 					buffer[len++] = '%';
 					buffer[len++] = format[i];
 				}
-				else
+				else /* return string, copy to buffer */
 				{
 					str = f(list);
 					if (str == NULL)
+					{
+						free(buffer);
 						return (-1);
+					}
 					if (format[i] == 'c' && str[0] == '\0')
 						buffer[len++] = '\0';
-					while (*str != '\0')
-						buffer[len++] = *str++;
+					j = 0;
+					while (str[j] != '\0')
+					{
+						buffer[len++] = str[j];
+						j++;
+					}
+					free(str);
 				}
 			} i++;
 		}

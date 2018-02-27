@@ -14,7 +14,7 @@ char *print_c(va_list list)
 	if (c == 0)
 		c = '\0';
 
-	s = malloc(sizeof(char *) * 2);
+	s = malloc(sizeof(char) * 2);
 	if (s == NULL)
 		return (NULL);
 	s[0] = c;
