@@ -64,6 +64,9 @@ int _printf(const char *format, ...)
 	char *buffer, *str;
 	char* (*f)(va_list);
 
+	if (format == NULL)
+		return (-1);
+
 	buffer = create_buffer();
 	va_start(list, format);
 
