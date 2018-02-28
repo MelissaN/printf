@@ -1,5 +1,5 @@
 #include "holberton.h"
-#include <stdio.h>
+
 /**
  * rev_string - reverses a string
  * @s: string to reverse
@@ -17,7 +17,7 @@ char *rev_string(va_list list)
 		str = ")llun(";
 
 	len = _strlen(str);
-	printf("%d\n", len);
+
 	rev = malloc(sizeof(char) * (len + 1));
 	if (rev == NULL)
 		return (NULL);
