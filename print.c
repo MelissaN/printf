@@ -9,7 +9,7 @@
  */
 int check_buffer_overflow(char *buffer, int len)
 {
-	if (len == 1022)
+	if (len < 1022)
 	{
 		write(1, buffer, len);
 		len = 0;
