@@ -1,4 +1,22 @@
 #include "holberton.h"
+
+/**
+ * check_buffer_overflow - if writing over buffer space,
+ * print everything then revert length back to 0 to write at buffer start
+ * @buffer: buffer holding string to print
+ * @len: position in buffer
+ * Return: length position
+ */
+int check_buffer_overflow(char *buffer, int len)
+{
+	if (len == 1022)
+	{
+		write(1, buffer, len);
+		len = 0;
+	}
+	return (len);
+}
+
 /**
  * _printf - mini printf version
  * @format: initial string with all identifiers
@@ -23,7 +41,10 @@ int _printf(const char *format, ...)
 	while (format[i] != '\0')
 	{
 		if (format[i] != '%') /* copy format into buffer until '%' */
+		{
+			len = check_buffer_overflow(buffer, len);
 			buffer[len++] = format[i++];
+		}
 		else /* if %, find function */
 		{
 			i++;
@@ -33,12 +54,16 @@ int _printf(const char *format, ...)
 				return (-1);
 			}
 			if (format[i] == '%') /* handle double %'s */
+			{
+				len = check_buffer_overflow(buffer, len);
 				buffer[len++] = format[i];
+			}
 			else
 			{
 				f = get_func(format[i]); /* grab function */
 				if (f == NULL)  /* handle fake id */
 				{
+					len = check_buffer_overflow(buffer, len);
 					buffer[len++] = '%';
 					buffer[len++] = format[i];
 				}
@@ -51,10 +76,14 @@ int _printf(const char *format, ...)
 						return (-1);
 					}
 					if (format[i] == 'c' && str[0] == '\0')
+					{
+						len = check_buffer_overflow(buffer, len);
 						buffer[len++] = '\0';
+					}
 					j = 0;
 					while (str[j] != '\0')
 					{
+						len = check_buffer_overflow(buffer, len);
 						buffer[len++] = str[j];
 						j++;
 					}
