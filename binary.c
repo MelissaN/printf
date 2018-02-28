@@ -1,3 +1,4 @@
+
 #include "holberton.h"
 
 /**
@@ -19,7 +20,13 @@ char *itob(va_list list)
 	s = malloc(sizeof(char) * 33);
 	if (s == NULL)
 		return (NULL);
-
+	if (k < 0)
+	{
+		s[0] = 1 + '0';
+		j++;
+		k *= -1;
+		i *= -1;
+	}
 	/* find biggest power of 2 it's divisible by */
 	while (k > 1)
 	{
@@ -30,10 +37,7 @@ char *itob(va_list list)
 	/* divide down and store binary num */
 	while (twos > 0)
 	{
-		if (i / twos < 2)
-			s[j++] = (i / twos + '0');
-		else
-			s[j++] = (0 + '0');
+		s[j++] = (i / twos + '0');
 		i %= twos;
 		twos /= 2;
 	}
