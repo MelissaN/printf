@@ -35,6 +35,14 @@ d, i   The
 .I int
 argument is converted to signed decimal notation.
 .sp
+o      The
+.I int
+argument is converted to octal as characters, and the result is written.
+.sp
+r      The
+.I const char *
+argument characters are all printed in reverse.
+.sp
 R      The
 .I const char *
 argument is encrypted shifting each letter 13 letters down the alphabet. rot13

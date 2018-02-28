@@ -3,8 +3,11 @@
 > the ```stdio.h``` library in the C programming language. This repository holds
 > all the code necessary for our custom ```_printf``` function to run. Our
 > mini-version currently handles conversion specifiers: ```c```, ```s```,
-> ```%```, ```d```, and ```i``` and does not yet support field width, precision,
-> flag characters, or length modifiers. Unique to our _printf is our ```b``` binary conversion and the ```R``` rot13 conversion.
+> ```%```, ```d```, ```i```, ```b```, ```o``` and does not yet support field width, precision,
+> flag characters, or length modifiers. Unique to our _printf is our ```r```
+> reverse conversion and the ```R``` rot13 conversion. In essence, you can
+> print any character, string, integer, or decimal number, reverse your strings, 
+> transform any number to binary and octal bases, and encrypt your string with rot13 encryption. 
 
 ### Requirements
 * Language: C
@@ -34,7 +37,7 @@ va_arg
 man_3_printf ----------------------- custom manpage for custom _printf function
 print.c ---------------------------- holds custom _printf function
 holberton.h ------------------------ holds prototypes of functions spread across all files
-getFunc_and_buffer_functions.c ----- holds helper functions to get appropriate function, and create and write buffer
+getFunc_and_buffer_functions.c ----- holds functions to get appropriate function, and create and write buffer
 strcpy.c --------------------------- holds custom-made strcpy function
 strlen.c --------------------------- holds custom-made strlen function
 string.c --------------------------- handles %s

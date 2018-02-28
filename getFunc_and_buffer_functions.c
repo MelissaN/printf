@@ -17,6 +17,7 @@ char* (*get_func(char i))(va_list)
 		{'b', itob},
 		{'R', rot13},
 		{'r', rev_string},
+		{'o', itoOctal},
 		{'\0', NULL}
 	};
 
