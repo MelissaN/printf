@@ -2,11 +2,11 @@
 
 /**
  * itob - change int to binary
- * list: int to change
+ * @list: int to change
  * Return: string with binary
  */
 
-char* itob(va_list list)
+char *itob(va_list list)
 {
 	int j = 0, twos = 1;
 	int i, k;

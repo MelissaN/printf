@@ -11,7 +11,7 @@ char *create_buffer(void);
 void write_buffer(char *buffer, int len, va_list list);
 char *_strcpy(char *dest, char *src);
 int _strlen(char *s);
-char* itob(va_list list);
+char *itob(va_list list);
 
 /* printf functions */
 int _printf(const char *format, ...);

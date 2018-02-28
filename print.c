@@ -30,7 +30,7 @@ int _printf(const char *format, ...)
 			if (format[i] == '\0') /* handle single ending % */
 			{
 				free(buffer);
-				return(-1);
+				return (-1);
 			}
 			if (format[i] == '%') /* handle double %'s */
 				buffer[len++] = format[i];

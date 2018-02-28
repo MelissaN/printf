@@ -13,15 +13,16 @@ char *_itos(int div, int length, int n)
 
 	str = malloc(sizeof(char) * length + 1);
 	if (str == NULL)
-		return(NULL);
-	if (n < 0)
+		return (NULL);
+
+	if (n < 0) /* account for negative sign */
 	{
 		str[0] = '-';
 		i++;
 	}
-	while (n < 0)
+	while (n < 0) /* convert each num to string */
 	{
-		str[i] = ((n / div) * -1 + '0');
+		str[i] = ((n / div) * -1 + '0'); /* *-1 to handle min int */
 		n = n % div;
 		div /= 10;
 		i++;
@@ -53,13 +54,9 @@ char *print_d(va_list list)
 	if (n == 0)
 	{
 		length++;
-	 	return (_itos(div, length, n));
+		return (_itos(div, length, n));
 	}
-	/* if (temp < 0)
-	{
-		temp *= -1;
-	} */
-	while (temp != 0)
+	while (temp != 0) /* find multiple of ten to divide */
 	{
 		length += 1;
 		if (length > 1)
