@@ -51,6 +51,7 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == '\0') /* handle single ending % */
 			{
+				va_end(list);
 				free(buffer);
 				return (-1);
 			}
@@ -74,6 +75,7 @@ int _printf(const char *format, ...)
 					str = f(list);
 					if (str == NULL)
 					{
+						va_end(list);
 						free(buffer);
 						return (-1);
 					}
