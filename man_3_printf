@@ -3,7 +3,7 @@
 .B _printf
 - formatted output conversion
 .SH SYNOPSIS
-.B #include our *.c files
+.B #include "holberton.h"
 .sp
 int _printf(const char *format, ...);
 .SH DESCRIPTION
