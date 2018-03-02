@@ -52,6 +52,11 @@ int main(void)
 Hello W0rld
 (terminal)$
 ```
+
+### To Do
+* The main _printf function can be separated into more modular shorter functions
+* More functionality can still be added (e.g. support field width specifiers, etc)
+
 ---
 ### Authors
 Melissa Ng [![M](https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/30px-Twitter_Bird.svg.png)](https://twitter.com/MelissaNg__)
