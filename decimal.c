@@ -1,4 +1,5 @@
 #include "holberton.h"
+
 /**
  * _itos - makes an int a string
  * @div: multiple of 10
@@ -11,7 +12,7 @@ char *_itos(int div, int length, int n)
 	char *str;
 	int i = 0;
 
-	str = malloc(sizeof(char) * length + 1);
+	str = malloc(sizeof(char) * length + 2);
 	if (str == NULL)
 		return (NULL);
 
@@ -27,7 +28,7 @@ char *_itos(int div, int length, int n)
 		div /= 10;
 		i++;
 	}
-	while (div >= 1)
+	while (div >= 1) /* same, this case for positives */
 	{
 		str[i] = ((n / div) + '0');
 		n = n % div;
@@ -37,10 +38,11 @@ char *_itos(int div, int length, int n)
 	str[i] = '\0';
 	return (str);
 }
+
 /**
  * print_d - gets length to put in _itos
  * @list: takes arg
- * Return: inegar string
+ * Return: integar string
  **/
 char *print_d(va_list list)
 {
@@ -51,11 +53,12 @@ char *print_d(va_list list)
 	length = 0;
 	div = 1;
 
-	if (n == 0)
+	if (n == 0) /* account for 0 having length 1 */
 	{
 		length++;
 		return (_itos(div, length, n));
 	}
+
 	while (temp != 0) /* find multiple of ten to divide */
 	{
 		length += 1;
