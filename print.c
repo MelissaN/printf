@@ -100,3 +100,13 @@ int _printf(const char *format, ...)
 	write_buffer(buffer, len, list);
 	return (total_len);
 }
+
+/**
+ * main - sample main program
+ * Return: 0 on sucess
+ */
+int main(void)
+{
+	_printf("%s %c%drld", "Hello", "W", 0);
+	return (0);
+}
