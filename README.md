@@ -38,9 +38,8 @@ rot13 ------------------------------ handles %R to move each character 13 alphab
 ### How To Install & Compile
 ```
 (terminal)$ git clone https://github.com/MelissaN/printf.git
-(terminal)$ gcc -Wall -Werror -Wextra -pedantic -Wno-format *.c -o print
 ```
-Sample main program:
+Sample main program inside print.c:
 ```
 int main(void)
 {
@@ -48,6 +47,7 @@ int main(void)
 	return (0);
 }
 ====================================
+(terminal)$ gcc -Wall -Werror -Wextra -pedantic -Wno-format *.c -o print
 (terminal)$ ./print
 Hello W0rld
 (terminal)$
@@ -61,6 +61,3 @@ Hello W0rld
 ### Authors
 Melissa Ng [![M](https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/30px-Twitter_Bird.svg.png)](https://twitter.com/MelissaNg__)
 Cody Paral [![M](https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/30px-Twitter_Bird.svg.png)](https://twitter.com/Cody_299)
-
-### License
- [![M](https://www.holbertonschool.com/holberton-logo-simple-200s.png)](https://www.holbertonschool.com)
