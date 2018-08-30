@@ -38,6 +38,7 @@ rot13 ------------------------------ handles %R to move each character 13 alphab
 ### How To Install & Compile
 ```
 (terminal)$ git clone https://github.com/MelissaN/printf.git
+(terminal)$ cd printf
 ```
 Sample main program inside print.c:
 ```
