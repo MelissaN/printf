@@ -1,4 +1,4 @@
-<center><img src="https://github.com/MelissaN/printf/master/printf.gif" width=50% height=50%></center>
+<center><img src="https://raw.githubusercontent.com/MelissaN/printf/master/printf.gif" width=50% height=50%></center>
 ## _printf()
 > In this project, we recreated a mini-verison of the ```printf``` function found in
 > the ```stdio.h``` library in the C programming language. This function allows
